@@ -8,67 +8,67 @@ export const useNavStore = defineStore('navStore', {
                 {
                     id: 1,
                     name: 'Материнские платы',
-                    path: '/motherboards',
+                    path: 'motherboards',
                 },{
                     id: 2,
                     name: 'Процессоры',
-                    path: '/cpu',
+                    path: 'cpu',
                 },{
                     id: 3,
                     name: 'ОЗУ',
-                    path: '/ram',
+                    path: 'ram',
                 },{
                     id: 4,
                     name: 'Блоки питания',
-                    path: '/powerunits',
+                    path: 'powerunits',
                 },{
                     id: 5,
                     name: 'Видеокарты',
-                    path: '/graphiccards',
+                    path: 'graphiccards',
                 },{
                     id: 6,
                     name: 'Жесткие диски',
-                    path: '/hdd',
+                    path: 'hdd',
                 },{
                     id: 7,
                     name: 'Кулеры',
-                    path: '/fans',
+                    path: 'fans',
                 },{
                     id: 8,
                     name: 'Корпусы',
-                    path: '/cases',
+                    path: 'cases',
                 },{
                     id: 9,
                     name: 'Мониторы',
-                    path: '/monitor',
+                    path: 'monitor',
                 },{
                     id: 10,
                     name: 'Клавиатуры',
-                    path: '/keyboards',
+                    path: 'keyboards',
                 },{
                     id: 11,
                     name: 'Мыши',
-                    path: '/mouses',
+                    path: 'mouses',
                 },{
                     id: 12,
                     name: 'Колонки',
-                    path: '/speakers',
+                    path: 'speakers',
                 },{
                     id: 13,
                     name: 'Наушники',
-                    path: '/headphones',
+                    path: 'headphones',
                 },{
                     id: 14,
                     name: 'Игровые консоли',
-                    path: '/consoles',
+                    path: 'consoles',
                 },{
                     id: 15,
                     name: 'Геймпады',
-                    path: '/gamepads',
+                    path: 'gamepads',
                 },{
                     id: 16,
                     name: 'Аксессуары',
-                    path: '/accessories',
+                    path: 'accessories',
                 },
             ]
         }

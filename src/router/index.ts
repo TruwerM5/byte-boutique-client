@@ -20,9 +20,20 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
     },{
+      // path: '/products/:category',
       path: '/products/:category',
       name: 'categories',
       component: CategoryView,
+      //MAYBE rename to products
+    },{
+      // path: '/products/:category',
+      path: '/admin/auth',
+      name: 'Admin auth',
+      component: () => import('../views/AdminAuthView.vue'),
+    },{
+      path: '/create-product',
+      name: 'Create product',
+      component: () => import('../views/CreateProductView.vue'),
     }
   ]
 })

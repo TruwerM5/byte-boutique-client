@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {},
     fontFamily: {
-      'mavenpro': ['"Maven Pro"']
+      'mavenpro': ['"Maven Pro"'],
+      'roboto': ["Roboto"],
     },
     colors: {
       'primary': '#2D4F8E',

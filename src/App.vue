@@ -2,20 +2,15 @@
 import { RouterLink, RouterView } from 'vue-router'
 import axios from 'axios';
 import HeaderVue from './components/ui/HeaderVue.vue';
-async function getHello() {
-  const response = await axios.get('/api/users');
-  const data = await response.data;
-  console.log(data);
-}
-
-getHello();
-
+import AuthFormVue from './components/ui/AuthFormVue.vue';
 
 </script>
 
 <template>
   <HeaderVue />
   <RouterView />
+  <AuthFormVue />
+  <img src="http://localhost:3000/images/button-pending.png" alt="Pending">
 </template>
 
 <style scoped lang="sass">
