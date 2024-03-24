@@ -28,7 +28,7 @@ const authStore = useAuthStore();
                     <ul class="nav__list">
                         <li v-for="navitem,i in navStore.navLinks" :key="navitem.id" 
                         class="nav__item ">
-                            <RouterLink :to="'/products/'+navitem.path">
+                            <RouterLink :to="{path:'/categories/'+navitem.path}">
                                 {{ navitem.name }}
                             </RouterLink>    
                         </li>

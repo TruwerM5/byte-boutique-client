@@ -27,6 +27,8 @@ const categories = reactive([
     'gamepads', 'accessories',
 ]);
 const selected = ref('motherboards');
+const files = ref<FileList | null>(null);
+let formData = new FormData();
 
 function addFields() {
     productDetails.value.push({
@@ -65,15 +67,41 @@ function stringify() {
     return JSON.stringify(json);
 }
 
+function onSelectedFile(e:any) {
+    files.value = e.target.files;
+}
+
 async function createProduct() {
     const data = stringify();
+    if(files.value) {
+        console.log('Files > 0');
+        for(let i = 0; i < files.value.length; i++) {
+            formData.append('files', files.value[i]);
+        }
+    }
+    formData.append('data', data);    
+    await axios.post('/api/products/create', formData, {
+        headers: {
+            'Content-Type': 'multipart/formdata'
+        }
+    })
+    .then(res => {
+        console.log('Ok');
+        formData = new FormData();
+        
+    })
+    .catch(err => {
+        console.log("Error: ", err);
+    })
 }
+
+
 
 
 </script>
 
 <template>
-    <form class="create-product form">
+    <form class="create-product form" @submit.prevent>
         <h3 class="create-product__title">Создание продукта</h3>
         <label for="product_name" class="create-product__label">
             <span class="create-product__text form__text">Имя</span>
@@ -112,7 +140,12 @@ async function createProduct() {
         </label>
         <label for="product_images" class="create-product__label">
             <span class="create-product__text form__text">Изображения</span>
-            <input type="file" name="product_images" id="product_images" multiple required>
+            <input type="file" 
+            name="product_images" 
+            id="product_images" 
+            multiple
+            @change="onSelectedFile"
+            >
         </label>
         <div class="create-product__details details flex flex-col">
             <span class="details__title">Доп. информация</span>
@@ -161,11 +194,12 @@ async function createProduct() {
             </table> -->
             <button
             @click="addFields" 
+            type="button"
             class="details__add-btn">Добавить</button>
         </div>
         <PrimaryButtonVue
         :title="'Создать'"
-        @click="stringify"
+        @click="createProduct"
         class="w-full"
         />
     </form>

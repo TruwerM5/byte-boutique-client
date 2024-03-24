@@ -1,32 +1,34 @@
 <script setup lang="ts">
-import {LocationQueryValue, useRoute, useRouter, onBeforeRouteUpdate} from 'vue-router';
+import { useRoute, onBeforeRouteUpdate} from 'vue-router';
 import { ref } from 'vue';
-import axios from 'axios';
+import { useProductStore } from '@/stores/products';
+import ProductsListVue from '@/components/ProductsListVue.vue';
+
 
 const route = useRoute();
+const productStore = useProductStore();
+const data = ref<any>();
 
-const data = ref()
-
-async function getByCategory(category: LocationQueryValue | LocationQueryValue[]) {
-    const request = await axios.get(`/api/products/${category}`);
-    const response = await request.data;
-    data.value = response;
+async function fetchProducts(category: string | string[]) {
+    data.value = await productStore.listProductsByCategory(category);
+    productStore.cacheProducts(data.value);
 }
 
+onBeforeRouteUpdate(async (to, from) => {
+    data.value = null;
+    data.value = await fetchProducts(to.params.category);
+    
+});
 
-getByCategory(route.params.category);
 
-console.log(route.params.category);
-
-
-onBeforeRouteUpdate( async (to, from) => {
-    data.value = '';
-    await getByCategory(to.params.category);
-})
+fetchProducts(route.params.category);
 
 
 </script>
 
 <template>
-    <h1>{{ data }}</h1>
+    
+    <div class="category-view">
+        <ProductsListVue :data="data" />
+    </div>
 </template>

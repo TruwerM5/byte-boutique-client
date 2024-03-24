@@ -10,7 +10,6 @@ import AuthFormVue from './components/ui/AuthFormVue.vue';
   <HeaderVue />
   <RouterView />
   <AuthFormVue />
-  <img src="http://localhost:3000/images/button-pending.png" alt="Pending">
 </template>
 
 <style scoped lang="sass">
